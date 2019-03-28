@@ -512,11 +512,13 @@
         /*
          * Tabla Calendario
          */
+        #cabezal,
         .row{
             height: 55px;
             border: 0px;
         }
 
+        .HcalCol,
         .calCol{
             float: left;
             width: 64.2px;
@@ -527,10 +529,6 @@
             background-color: rgb(0, 218, 191);
             color: rgb(128, 115, 122);
         }  
-
-        #calendarioTable >{
-
-        }
 
         /*
          * Funcionalidades
