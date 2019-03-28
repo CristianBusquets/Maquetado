@@ -81,7 +81,7 @@
     /*
      * Resto
      */
-    #full{
+    #remainderCalendar, #circleOfCare{
         display: none;
     }
 }
