@@ -3,19 +3,29 @@
  */
 var abajo = "images//abajo.png";
 var derecha = "images//derecha.png";
-var today = new Date();
 var months = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
 var days = ["SUNDAY", "MONDAY", "TUESDEY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+var motnhModifier = 0;
+var today = new Date();
 
 main();
 
 function main(){
 	remaining();
-	loadCalendar();
+	loadCalendar(today);
 	var btnDelete = document.querySelectorAll(".delete");
+
 	for(var i = 0; i < btnDelete.length; i++){
 		btnDelete[i].addEventListener("click", removeEmail);
 	}
+
+	document.querySelector("#imgIzquierdaCal").addEventListener("click", function(){
+		monthChange(new Date(today.getFullYear(), today.getMonth() + --motnhModifier));
+	});
+
+	document.querySelector("#imgDerechaCal").addEventListener("click", function(){
+		monthChange(new Date(today.getFullYear(), today.getMonth() + ++motnhModifier));
+	});
 }
 
 $(document).ready(
@@ -50,6 +60,28 @@ function remaining(){
 /*
  * Calendar
  */
-function loadCalendar(){
-	document.querySelector("#date").innerText = today.getDate() + " / " + months[today.getMonth()] + " / " + days[today.getDay() - 1] ;
+function loadCalendar(fecha){
+	document.querySelector("#date").innerText = fecha.getDate() + " / " + months[fecha.getMonth()] + " / " + days[fecha.getDay() - 1];
+	monthChange(fecha);
+}
+
+function monthChange(fecha){
+	document.querySelector("#calDate").innerText = months[fecha.getMonth()] + " " + fecha.getFullYear();
+	setCalDays();
+}
+
+function setCalDays(){
+	// *daysInMonth - https://medium.com/@nitinpatel_20236/challenge-of-building-a-calendar-with-pure-javascript-a86f1303267d
+	var daysInMonth = 32 - new Date(today.getFullYear(), today.getMonth() + motnhModifier, 32).getDate();
+
+	var daysMonth = document.querySelectorAll(".calCol > span");
+	var dayModifier = new Date(today.getFullYear(), today.getMonth() + motnhModifier, 1).getDay();
+
+	for(var i = 0; i < daysMonth.length; i++){
+		daysMonth[i].innerText = "";
+	}
+	
+	for(var i = 0; i < daysInMonth; i++){
+		daysMonth[i + dayModifier].innerText = i + 1;
+	}
 }
