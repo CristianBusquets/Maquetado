@@ -4,7 +4,7 @@
 var abajo = "images//abajo.png";
 var derecha = "images//derecha.png";
 var months = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
-var days = ["SUNDAY", "MONDAY", "TUESDEY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+var days = ["SATURDAY", "SUNDAY", "MONDAY", "TUESDEY", "WEDNESDAY", "THURSDAY", "FRIDAY"];
 var motnhModifier = 0;
 var today = new Date();
 
@@ -61,7 +61,7 @@ function remaining(){
  * Calendar
  */
 function loadCalendar(fecha){
-	document.querySelector("#date").innerText = fecha.getDate() + " / " + months[fecha.getMonth()] + " / " + days[fecha.getDay() - 1];
+	document.querySelector("#date").innerText = fecha.getDate() + " / " + months[fecha.getMonth()] + " / " + days[fecha.getDay()];
 	monthChange(fecha);
 }
 
